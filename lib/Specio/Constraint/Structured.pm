@@ -3,20 +3,20 @@ package Specio::Constraint::Structured;
 use strict;
 use warnings;
 
-our $VERSION = '0.49';
+our $VERSION = '0.50';
 
+use Clone ();
 use List::Util 1.33 qw( all );
 use Role::Tiny::With;
 use Specio::OO;
 use Specio::TypeChecks qw( does_role );
-use Storable           qw( dclone );
 
 use Specio::Constraint::Role::Interface;
 with 'Specio::Constraint::Role::Interface';
 
 {
     ## no critic (Subroutines::ProtectPrivateSubs)
-    my $attrs = dclone( Specio::Constraint::Role::Interface::_attrs() );
+    my $attrs = Clone::clone( Specio::Constraint::Role::Interface::_attrs() );
     ## use critic
 
     $attrs->{parent}{isa}      = 'Specio::Constraint::Structurable';

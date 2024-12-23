@@ -3,7 +3,7 @@ package Specio::Constraint::Role::Interface;
 use strict;
 use warnings;
 
-our $VERSION = '0.49';
+our $VERSION = '0.50';
 
 use Carp            qw( confess );
 use Eval::Closure   qw( eval_closure );
@@ -549,6 +549,7 @@ sub _build_signature {
     # address and stringifies to the same value. XXX - will this break under
     # threads?
     return join "\n",
+        ## no critic (Subroutines::ProtectPrivateSubs)
         ( $self->_has_parent ? $self->parent->_signature : () ),
         (
         defined $self->_constraint
